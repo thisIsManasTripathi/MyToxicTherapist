@@ -1,0 +1,61 @@
+# =========================
+# Python
+# =========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Virtual environments
+venv/
+.env/
+.venv/
+
+# =========================
+# ML / Data artifacts
+# =========================
+*.pkl
+*.joblib
+*.model
+
+# If you later save trained models
+models/
+checkpoints/
+
+# =========================
+# Jupyter
+# =========================
+.ipynb_checkpoints/
+
+# =========================
+# Flask / Web
+# =========================
+instance/
+*.log
+
+# =========================
+# OS / Editor junk
+# =========================
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# =========================
+# Deployment
+# =========================
+.env.production
+.env.local
+.env.dev
+
+# =========================
+# Misc
+# =========================
+coverage/
+dist/
+build/
