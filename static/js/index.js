@@ -10,7 +10,7 @@ async function sendMessage(){
         message: inputBar.value
     })
     })
-    let data = await response.json()
+    let data = (await response).json()
     console.log(data.reply)
    
 }

@@ -6,7 +6,7 @@ app = Flask(__name__)
 def processChat():
     data = request.get_json()
     print(data)
-    
+    return {"reply": "idkwhatever"}
 
 @app.route("/", methods=['GET'])
 def Home():

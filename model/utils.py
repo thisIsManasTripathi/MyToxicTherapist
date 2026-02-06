@@ -1,7 +1,7 @@
 import nltk
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
-import re, contractions, string
+import re, contractions, string, json
 from spellchecker import SpellChecker
 
 # nltk.download('punkt_tab')
@@ -25,6 +25,19 @@ def filter_input(cleaned_data):
     finalOp = [spellChecker.correction(word) for word in expandedOp]
     return finalOp
 
+def preprocess_data(data): #'data' -> list of sentences made from the user input
+    sanitizedOp = [sanitize_input(sent) for sent in data]
+    filteredOp = [filter_input(sent) for sent in sanitizedOp]
+    finalOp = [" ".join(sent) for sent in filteredOp] #Re-join token into sentences
+    return finalOp
 
-inp = "Hello dudee! Can't wait to see ya on frida 78."
-print(filter_input(sanitize_input(inp)))
+def readJSON():
+    data = ''
+    trainingCorpus = []
+    with open('/home/amimanas/NDVLLR/myToxicTherapist/model/corpus.json', 'r') as file:
+        data = json.load(file)
+
+    for i in data["themes"]:
+        trainingCorpus += i["patterns"]
+
+    return trainingCorpus
