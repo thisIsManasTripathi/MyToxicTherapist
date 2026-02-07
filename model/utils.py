@@ -41,3 +41,24 @@ def readJSON():
         trainingCorpus += i["patterns"]
 
     return trainingCorpus
+
+def return_pattern_sheet():
+    data = {}
+    with open('/home/amimanas/NDVLLR/myToxicTherapist/model/corpus.json', 'r') as file:
+        data = json.load(file)
+
+    patternSheet = [theme['patterns'] for theme in data["themes"]]
+    return patternSheet
+
+
+def return_response_sheet():
+    data = {}
+    with open('/home/amimanas/NDVLLR/myToxicTherapist/model/corpus.json', 'r') as file:
+        data = json.load(file)
+
+    responseSheet = [theme['responses'] for theme in data["themes"]]
+    return responseSheet
+
+# print(readJSON())
+
+
