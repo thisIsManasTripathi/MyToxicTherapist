@@ -26,12 +26,12 @@ def fit_model():
     joblib.dump(model, model_path)
     joblib.dump(tfidf_matrix, "tfidf_matrix.joblib")
 
-def find_cluster(index):
+def respond(index):
+
+    #genrating cumulative array for easily finding the cluster to which the pattern belonged
     cumulativeArr = [len(pattern)-1 for pattern in patternSheet]
     for i in range(1, len(cumulativeArr)):
         cumulativeArr[i] += (cumulativeArr[i-1]+1)
-
-    print(cumulativeArr)
 
     clusterIdx = 0
     for i in range(len(cumulativeArr)):
@@ -40,12 +40,17 @@ def find_cluster(index):
             break
 
     print(clusterIdx)
-    responseCluster = responseSheet[clusterIdx]
+
+    responseCluster = responseSheet[clusterIdx] #getting the corresponding response cluster.
     
-    print(responseCluster[randint(0, len(responseCluster)-1)])
+    # print(responseCluster[randint(0, len(responseCluster)-1)])
+
+    return responseCluster[randint(0, len(responseCluster)-1)]
 
 
-def predictSentiment(data):
+def findSentimentIndex(data):
+    data = preprocess_data(data) #cleaning the data before feeding it to the vectorizer
+
     text_vect = model.transform(data)
     similarity_matrix = cosine_similarity(text_vect, tfidf_matrix)[0]
 
@@ -55,6 +60,3 @@ def predictSentiment(data):
 
     return maxValIdx
     
-# find_cluster(predictSentiment(["my brain won't shut up at night", "It just keeps telling me that I'm worthless."]))
-find_cluster(predictSentiment([""]))
-# predictResponse(["my brain won't shut up at night", "It just keeps telling me that I'm worthless."])

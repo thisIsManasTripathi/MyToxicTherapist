@@ -3,9 +3,12 @@ from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
 import re, contractions, string, json
 from spellchecker import SpellChecker
+from nltk.corpus import wordnet as wn
 
 # nltk.download('punkt_tab')
 # nltk.download('wordnet')
+wn.ensure_loaded()
+
 
 def sanitize_input(inp):
     inp = inp.lower()
@@ -20,6 +23,7 @@ def filter_input(cleaned_data):
 
     lemmatizer = WordNetLemmatizer()
     spellChecker = SpellChecker()
+
     lemmatizedOp = [lemmatizer.lemmatize(word) for word in tokenizedOp] #transforms the word into crude form (playing,plays->play)
     expandedOp = [contractions.fix(word) for word in lemmatizedOp] #cant -> cannot
     finalOp = [spellChecker.correction(word) for word in expandedOp]

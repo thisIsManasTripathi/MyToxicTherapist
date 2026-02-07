@@ -1,0 +1,42 @@
+*{
+    margin: 0px;
+    box-sizing: border-box;
+}
+#chatBox{
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 80vh;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+}
+#displayChatBox{
+    width: 80%;
+    height: 85%;
+}
+#typingArea{
+    width: 80%;
+    height: 15%;
+}
+.chatBubble{
+    display: block;
+    margin-block: 0.2rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border-radius: 1rem;
+}
+.user{
+    text-align: right;
+    background-color: aquamarine;
+}
+.therapist{
+    background-color: crimson;
+    text-align: left;
+
+}
+#inputBar{
+    width: 90%;
+    padding: 1rem;
+    font-size: medium;
+    border-radius: 1rem;
+}
