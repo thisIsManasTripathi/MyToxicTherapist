@@ -52,6 +52,7 @@ def findSentimentIndex(data):
     data = preprocess_data(data) #cleaning the data before feeding it to the vectorizer
 
     text_vect = model.transform(data)
+    print(text_vect.shape, tfidf_matrix.shape)
     similarity_matrix = cosine_similarity(text_vect, tfidf_matrix)[0]
 
     maxValIdx = where(similarity_matrix == max(similarity_matrix))[0][0] #return the index of pattern with highest similarity value
@@ -59,4 +60,3 @@ def findSentimentIndex(data):
     print(maxValIdx, trainingCorpus[maxValIdx])
 
     return maxValIdx
-    
