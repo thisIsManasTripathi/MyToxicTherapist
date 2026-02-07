@@ -3,19 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Dr. Frank Cold's Office</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
 </head>
 <body>
-    <h1>Sup Dawg!</h1>
-    <div id="chatBox">
-        <div id="displayChatBox">
-            
-        </div>
-        <div id="typingArea">
-            <input type="text" id="inputBar" name="inputBar">
-            <button id="sendBtn" onclick="sendMessage()">Send</button>
+    <div class="glass"></div>
+    <h1>SESSION STARTED...</h1>
+    <div class="chat-container">
+        <div id="chatBox">
+            <div id="displayChatBox">
+            </div>
+            <div id="typingArea">
+                <input type="text" id="inputBar" name="inputBar">
+                <button id="sendBtn" onclick="sendMessage()"><img src="{{ url_for('static', filename='send.png') }}" alt="" srcset=""></button>
+            </div>
         </div>
     </div>
     <script src="{{ url_for('static', filename='js/index.js') }}"></script>

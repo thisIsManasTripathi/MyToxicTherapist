@@ -1,42 +1,97 @@
 *{
     margin: 0px;
     box-sizing: border-box;
+    color: #E5E5E5;
+}
+body{
+    width: 100vw;
+    height: 100vh; 
+    background: linear-gradient(45deg, #0F0F0F, #262626);
+}
+.glass{
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  filter: saturate(40%) brightness(0.8);
+  z-index: 0;
+}
+h1{
+    opacity: 0.5;
+    color: gray;
+    font-style: italic;
+}
+.chat-container{
+    background: #0F0F0F;
+    width: fit-content;
+    margin: auto;
+    padding: 1rem;
 }
 #chatBox{
+    position: relative;
     display: flex;
     flex-direction: column;
-    width: 100vw;
+    width: 80vw;
     height: 80vh;
     margin: auto;
     justify-content: center;
     align-items: center;
+    z-index: 1;
+    background: transparent;
+
 }
 #displayChatBox{
     width: 80%;
     height: 85%;
+    overflow-y: scroll;
+    scrollbar-color: #0a0b0b #0a0b0b;
+    scroll-behavior: smooth;
 }
 #typingArea{
+    display: flex;
     width: 80%;
     height: 15%;
+    gap: 1vw;
+    justify-content: center;
+    align-items: center;
 }
 .chatBubble{
-    display: block;
-    margin-block: 0.2rem;
+    display:block;
+    width: fit-content;
+    margin-block: 1rem;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    border-radius: 1rem;
+    padding: 1rem;
 }
 .user{
-    text-align: right;
-    background-color: aquamarine;
+    margin-left: auto;
+    border-radius: 1rem;
+    background-color: #2A2A2A;
 }
 .therapist{
-    background-color: crimson;
-    text-align: left;
+    background-color: rgb(203, 19, 56);
+    border-radius: 0.5rem;
 
 }
+
 #inputBar{
     width: 90%;
-    padding: 1rem;
-    font-size: medium;
+    height: 10vh;
+    padding: 0.re5m;
+    font-size: large;
     border-radius: 1rem;
+    background-color: #151515;
+}
+#sendBtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #151515;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    padding: 1.75rem;
+}
+#sendBtn:hover{
+    background-color: crimson;
+    color: #E5E5E5;
 }
