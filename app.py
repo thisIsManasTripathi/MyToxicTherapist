@@ -8,7 +8,6 @@ app = Flask(__name__)
 @app.route('/chat', methods=['POST'])
 def processChat():
     data = request.get_json()
-    # print(data)
     filteredData = data['message'].split(".")
     response = respond(findSentimentIndex(filteredData))
     return {"reply": response}

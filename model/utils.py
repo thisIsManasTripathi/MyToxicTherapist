@@ -4,9 +4,10 @@ from nltk.stem import WordNetLemmatizer
 import re, contractions, string, json
 from spellchecker import SpellChecker
 from nltk.corpus import wordnet as wn
+from pathlib import Path
 
-# nltk.download('punkt_tab')
-# nltk.download('wordnet')
+BASE_DIR = Path(__file__).resolve().parent
+
 wn.ensure_loaded()
 
 
@@ -38,7 +39,7 @@ def preprocess_data(data): #'data' -> list of sentences made from the user input
 def readJSON():
     data = ''
     trainingCorpus = []
-    with open('/home/amimanas/NDVLLR/myToxicTherapist/model/corpus.json', 'r') as file:
+    with open(f'{BASE_DIR}/corpus.json', 'r') as file:
         data = json.load(file)
 
     for i in data["themes"]:
@@ -48,7 +49,7 @@ def readJSON():
 
 def return_pattern_sheet():
     data = {}
-    with open('/home/amimanas/NDVLLR/myToxicTherapist/model/corpus.json', 'r') as file:
+    with open(f'{BASE_DIR}/corpus.json', 'r') as file:
         data = json.load(file)
 
     patternSheet = [theme['patterns'] for theme in data["themes"]]
@@ -57,12 +58,11 @@ def return_pattern_sheet():
 
 def return_response_sheet():
     data = {}
-    with open('/home/amimanas/NDVLLR/myToxicTherapist/model/corpus.json', 'r') as file:
+    with open(f'{BASE_DIR}/corpus.json', 'r') as file:
         data = json.load(file)
 
     responseSheet = [theme['responses'] for theme in data["themes"]]
     return responseSheet
 
-# print(readJSON())
 
 
