@@ -15,8 +15,7 @@ def sanitize_input(inp):
     inp = inp.lower()
     inp = re.sub(r'\d+', ' ', inp) #rm numbers
     inp = re.sub(f'[{string.punctuation}]+','',inp) #removing punctuations
-    inp = re.sub(r'\W ', ' ', inp) #rm special chars 
-    print(inp)  
+    inp = re.sub(r'\W ', ' ', inp) #rm special chars  
     return inp
 
 def filter_input(cleaned_data):
@@ -33,7 +32,12 @@ def filter_input(cleaned_data):
 def preprocess_data(data): #'data' -> list of sentences made from the user input
     sanitizedOp = [sanitize_input(sent) for sent in data]
     filteredOp = [filter_input(sent) for sent in sanitizedOp]
-    finalOp = [" ".join(sent) for sent in filteredOp] #Re-join token into sentences
+    print(filteredOp, "fileter op")
+    try:
+        finalOp = [" ".join(sent) for sent in filteredOp] #Re-join token into sentences
+    except :
+        finalOp = None
+    print(finalOp)
     return finalOp
 
 def readJSON():
@@ -63,6 +67,7 @@ def return_response_sheet():
 
     responseSheet = [theme['responses'] for theme in data["themes"]]
     return responseSheet
+
 
 
 
