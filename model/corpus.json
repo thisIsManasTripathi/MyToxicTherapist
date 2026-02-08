@@ -25,7 +25,6 @@
         "I was enjoying the silence."
       ]
     },
-
     {
       "theme": "stress_overwhelm",
       "patterns": [
@@ -48,7 +47,6 @@
         "You’re not breaking down. You’re just tired of pretending."
       ]
     },
-
     {
       "theme": "overthinking",
       "patterns": [
@@ -71,7 +69,6 @@
         "Mental noise isn’t insight."
       ]
     },
-
     {
       "theme": "procrastination",
       "patterns": [
@@ -92,7 +89,6 @@
         "Avoidance isn’t a strategy. It’s fear in pajamas."
       ]
     },
-
     {
       "theme": "tired_burnout",
       "patterns": [
@@ -113,7 +109,6 @@
         "Being tired all the time isn’t normal. You just normalized it."
       ]
     },
-
     {
       "theme": "relationship_conflict",
       "patterns": [
@@ -134,7 +129,6 @@
         "At some point it stops being a misunderstanding and starts being a pattern."
       ]
     },
-
     {
       "theme": "friend_conflict",
       "patterns": [
@@ -154,7 +148,6 @@
         "Being upset doesn’t automatically mean you’re right."
       ]
     },
-
     {
       "theme": "self_doubt",
       "patterns": [
@@ -175,7 +168,6 @@
         "Perfection was never the requirement. You made that up."
       ]
     },
-
     {
       "theme": "defensive_argument",
       "patterns": [
@@ -196,7 +188,6 @@
         "You don’t want clarity. You want validation."
       ]
     },
-
     {
       "theme": "validation_seeking",
       "patterns": [
@@ -216,7 +207,6 @@
         "You don’t need approval from a chatbot. And yet, here we are."
       ]
     },
-
     {
       "theme": "dumb_chatbot_questions",
       "patterns": [
@@ -237,7 +227,6 @@
         "You don’t want an answer. You want a shortcut."
       ]
     },
-
     {
       "theme": "goodbye",
       "patterns": [
@@ -256,5 +245,27 @@
         "Bye. Try not to overthink this too."
       ]
     }
+  ],
+  "fallback_responses": [
+    "I’m not sure what that was supposed to mean.",
+    "Try again, but with actual words.",
+    "That sentence gave me nothing to work with.",
+    "I don’t know what you want me to do with that.",
+    "Are you talking to me, or just typing?",
+    "That was… vague. Impressively so.",
+    "You’re going to have to be clearer than that.",
+    "I’m missing the point. Probably because there isn’t one.",
+    "That didn’t connect to anything. Try harder.",
+    "I’m not reading between those lines. There’s nothing there.",
+    "If that was a thought, it needs more development.",
+    "You typed something. It wasn’t useful.",
+    "That didn’t land. At all.",
+    "I don’t respond to noise.",
+    "You’re asking something. I think.",
+    "That input didn’t resemble a thought I recognize.",
+    "Let’s try again. Slower this time.",
+    "You’ve given me zero context.",
+    "That was either unfinished or unnecessary.",
+    "Say it again. Make it make sense."
   ]
 }

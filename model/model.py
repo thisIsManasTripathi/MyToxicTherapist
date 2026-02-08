@@ -1,7 +1,7 @@
 from utils import preprocess_data, readJSON, return_response_sheet, return_pattern_sheet
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-import os, joblib
+import os, joblib, json
 from random import randint
 from numpy import where
 from pathlib import Path
@@ -16,6 +16,7 @@ trainingCorpus = readJSON()
 patternSheet = return_pattern_sheet()
 responseSheet = return_response_sheet()
 
+
 tfidf_matrix = joblib.load(f"{BASE_DIR}/tfidf_matrix.joblib")
 
 def fit_model():
@@ -29,6 +30,12 @@ def fit_model():
     joblib.dump(tfidf_matrix, f"{BASE_DIR}/tfidf_matrix.joblib")
 
 def respond(index):
+    if index == None: #fallback 
+        print("fallback detected")
+        with open(f'{BASE_DIR}/corpus.json', 'r') as file:
+            data = json.load(file)
+            fb_replies = data['fallback_responses']
+        return fb_replies[randint(0, len(fb_replies)-1)]
 
     #genrating cumulative array for easily finding the cluster to which the pattern belonged
     cumulativeArr = [len(pattern)-1 for pattern in patternSheet]
@@ -48,10 +55,14 @@ def respond(index):
 
 def findSentimentIndex(data):
     data = preprocess_data(data) #cleaning the data before feeding it to the vectorizer
+    
+    if data:
+        text_vect = model.transform(data)
+        similarity_matrix = cosine_similarity(text_vect, tfidf_matrix)[0]
 
-    text_vect = model.transform(data)
-    similarity_matrix = cosine_similarity(text_vect, tfidf_matrix)[0]
-
-    maxValIdx = where(similarity_matrix == max(similarity_matrix))[0][0] #return the index of pattern with highest similarity value
-
+        maxValIdx = where(similarity_matrix == max(similarity_matrix))[0][0] #return the index of pattern with highest similarity value
+        maxValIdx = maxValIdx if similarity_matrix[maxValIdx] else None
+    else:
+        maxValIdx = None
+    print(maxValIdx)
     return maxValIdx
