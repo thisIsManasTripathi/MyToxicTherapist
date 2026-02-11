@@ -1,33 +1,68 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useRef, useState } from 'react'
+import ChatBox from './components/ChatBox'
+import InputBox from './components/InputBox'
+import ChatBubble from './components/ChatBubble'
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [messageArray, setMessageArray] = useState([])
+
+  const [customDepArray, setCustomDepArray] = useState([{message:"ffm"}])
+
+  // let customDepArray = [{ sender: "0" }]
+
+
+  console.log(customDepArray)
+
+  useEffect(() => {
+    let response;
+    console.log(customDepArray.length)
+    if (customDepArray[0].message != "ffm") {
+      console.log("this mf still ran")
+      fetch("http://localhost:5000/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          message: messageArray[messageArray.length - 1].message
+        })
+      }).then(resp => {
+        resp = resp.json()
+        return resp
+      }).then(data => {
+        setMessageArray(previousMessageArray => {
+          return [...previousMessageArray, { message: data.reply, sender: "therapist" }]
+        })
+      })
+    }
+  }, [customDepArray[0].message])
+
+
+  function sendMessage(message) {
+    setMessageArray((previousMessageArray) => {
+      return [...previousMessageArray, { message: message, sender: "user" }]
+    })
+
+    setCustomDepArray((previousDepArray)=>{
+      previousDepArray[0] = { message: message, sender: "user" }
+      return previousDepArray
+    })
+    console.log("ran after set state")
+  }
+
+  const inputRef = useRef(null)
+
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <ChatBox
+        messageArray={messageArray}
+      />
+      <InputBox
+        ref={inputRef}
+      />
+      <button onClick={() => { sendMessage(inputRef.current.value) }}></button>
     </>
   )
 }

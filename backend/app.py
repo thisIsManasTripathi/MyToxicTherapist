@@ -1,9 +1,11 @@
 from flask import Flask, render_template, request, jsonify
 import sys
 sys.path.insert(0, "model") 
+from flask_cors import CORS
 from model import findSentimentIndex, respond
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/chat', methods=['POST'])
 def processChat():
