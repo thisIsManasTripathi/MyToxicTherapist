@@ -2,23 +2,17 @@ import { useEffect, useRef, useState } from 'react'
 import ChatBox from './components/ChatBox'
 import InputBox from './components/InputBox'
 import ChatBubble from './components/ChatBubble'
+import { nanoid } from 'nanoid'
 
 function App() {
 
   const [messageArray, setMessageArray] = useState([])
 
-  const [customDepArray, setCustomDepArray] = useState([{message:"ffm"}])
-
-  // let customDepArray = [{ sender: "0" }]
-
-
-  console.log(customDepArray)
+  const [customDepArray, setCustomDepArray] = useState([{ id: 0 }])
 
   useEffect(() => {
     let response;
-    console.log(customDepArray.length)
-    if (customDepArray[0].message != "ffm") {
-      console.log("this mf still ran")
+    if (customDepArray[0].id != 0) {
       fetch("http://localhost:5000/chat", {
         method: "POST",
         headers: {
@@ -34,21 +28,31 @@ function App() {
         setMessageArray(previousMessageArray => {
           return [...previousMessageArray, { message: data.reply, sender: "therapist" }]
         })
+        const div = document.getElementById('ChatBox')
+        requestAnimationFrame(() => {
+          div.scrollTop = div.scrollHeight
+        });
       })
     }
-  }, [customDepArray[0].message])
+  }, [customDepArray[0].id])
 
 
   function sendMessage(message) {
+    document.getElementById("InputBox").value = ""
+    document.getElementById("InputBox").focus()
     setMessageArray((previousMessageArray) => {
       return [...previousMessageArray, { message: message, sender: "user" }]
     })
 
-    setCustomDepArray((previousDepArray)=>{
-      previousDepArray[0] = { message: message, sender: "user" }
+    setCustomDepArray((previousDepArray) => {
+      previousDepArray[0] = { id: nanoid() }
       return previousDepArray
     })
-    console.log("ran after set state")
+    const div = document.getElementById('ChatBox')
+    requestAnimationFrame(() => {
+      div.scrollTop = div.scrollHeight
+    });
+
   }
 
   const inputRef = useRef(null)
@@ -56,13 +60,24 @@ function App() {
 
   return (
     <>
-      <ChatBox
-        messageArray={messageArray}
-      />
-      <InputBox
-        ref={inputRef}
-      />
-      <button onClick={() => { sendMessage(inputRef.current.value) }}></button>
+      <div className="super">
+
+
+        <div id="label">
+          <h1>Dr. Frank Cold's Office</h1>
+        </div>
+        <div className="main">
+          <ChatBox
+            messageArray={messageArray}
+          />
+          <div id="typingArea">
+            <InputBox
+              ref={inputRef}
+            />
+            <button onClick={() => { sendMessage(inputRef.current.value) }} id='sendBtn'> <img src="src/assets/right-arrow.png" /></button>
+          </div>
+        </div>
+      </div>
     </>
   )
 }

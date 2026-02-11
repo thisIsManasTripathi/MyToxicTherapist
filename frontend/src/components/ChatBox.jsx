@@ -11,7 +11,7 @@ export default function ChatBox(props) {
   })
 
     return (
-        <div id="displayChatBox">
+        <div id="ChatBox">
             {chatBubbleArray}
         </div>
     )
