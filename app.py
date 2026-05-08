@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask import render_template
 import sys
 sys.path.insert(0, "model") 
 from flask_cors import CORS
@@ -16,7 +17,7 @@ def processChat():
 
 @app.route("/", methods=['GET'])
 def Home():
-    return 0
+    return render_template('index.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -2,7 +2,8 @@ from utils import preprocess_data, readJSON, return_response_sheet, return_patte
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import os, joblib, json
-from random import randint
+from random import randint, random
+from time import sleep
 from numpy import where
 from pathlib import Path
 
@@ -30,6 +31,7 @@ def fit_model():
     joblib.dump(tfidf_matrix, f"{BASE_DIR}/tfidf_matrix.joblib")
 
 def respond(index):
+    sleep(random()*2)
     if index == None: #fallback 
         print("fallback detected")
         with open(f'{BASE_DIR}/corpus.json', 'r') as file:
@@ -66,3 +68,4 @@ def findSentimentIndex(data):
         maxValIdx = None
     print(maxValIdx)
     return maxValIdx
+
