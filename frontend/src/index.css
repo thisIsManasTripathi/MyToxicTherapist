@@ -1,0 +1,137 @@
+* {
+    margin: 0px;
+    box-sizing: border-box;
+    color: #E5E5E5;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+}
+.super{
+    display: flex;
+}
+#label {
+    opacity: 0.5;
+    color: gray;
+    font-style: italic;
+    writing-mode: vertical-rl;
+    padding-left: 2rem;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-top: 5vh;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #0F0F0F;
+    width: 80vw;
+    margin: auto;
+    margin-right: 8vw;
+    padding: 2rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    border: 0.5rem solid white;
+    gap: 1rem;
+    margin-top: 0.75vh;
+}
+
+#ChatBox {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    height: 80vh;
+    margin: auto;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    border: 0.5rem solid white;
+    border-block: 0.1rem dashed white;
+    border-bottom: 0.05rem dashed white;
+    overflow-y: scroll;
+    scrollbar-color: #0a0b0b #0a0b0b;
+    scroll-behavior: smooth;
+    /* margin-bottom: 1vh; */
+}
+
+#typingArea {
+    display: flex;
+    width: 80%;
+    height: 15%;
+    margin: auto;
+    gap: 1vw;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 0.5rem;
+}
+
+.chat-bubble {
+    display: block;
+    width: fit-content;
+    margin-block: 1rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 1rem;
+    font-size: 1.2rem;
+}
+
+.user {
+    margin-left: auto;
+    border-radius: 1rem;
+    background-color: #2A2A2A;
+}
+
+.therapist {
+    margin-right: auto;
+    background-color: rgb(203, 19, 56);
+    border-radius: 0.5rem;
+}
+
+#InputBox {
+    width: 80%;
+    height: 7vh;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    border-radius: 1rem;
+    background-color: #fff;
+    color: #000;
+    font-family: monospace;
+}
+
+#sendBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    width: 3.2rem;
+    height: 3.2rem;
+    border: none;
+    border-radius: 50%;
+    padding-left: 0.6rem;
+}
+
+#sendBtn>img {
+    height: 2rem;
+}
+
+#sendBtn:hover {
+    background-color: crimson;
+    color: #E5E5E5;
+}
+@media (max-width: 1080px) {
+    #label{
+        display: none;
+    }
+    #ChatBox{
+        width: 100%;
+    }
+    .main{
+        width: 95vw;
+        margin: auto;
+        border: 0.2rem solid white;
+        padding: none;
+    }
+}
